@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { UniversalDataGrid } from './UniversalDataGrid';
 import { fetchMaterials, saveMaterial, deleteMaterial, isMaterialCodeDuplicate } from '../services/materialService';
 import MaterialModal from './MaterialModal';
@@ -37,7 +37,7 @@ export default function Materials({ isActive, winId }) {
         fetchData();
     }, [fetchData]);
 
-    const columns = [
+    const columns = useMemo(() => [
         { field: 'select_col', headerName: '', width: 35, pinned: 'left', type: 'checkbox' },
         { field: 'type', headerName: 'Tür', width: 130, editable: true, cellEditor: 'text' },
         { field: 'code', headerName: 'Kod', width: 120, editable: true, cellEditor: 'text' },
@@ -49,7 +49,7 @@ export default function Materials({ isActive, winId }) {
         { field: 'description1', headerName: 'Açıklama 1', width: 180, editable: true, cellEditor: 'text' },
         { field: 'description2', headerName: 'Açıklama 2', width: 180, editable: true, cellEditor: 'text' },
         { field: 'description3', headerName: 'Açıklama 3', width: 180, editable: true, cellEditor: 'text' }
-    ];
+    ], []);
 
     const [gridHeight, setGridHeight] = useState(600);
 

@@ -242,7 +242,7 @@ const EditModal = ({ machine, onSave, onClose, isDark, materialTypeOptions }) =>
 // --- ANA BİLEŞEN ---
 const MachineManagement = () => {
     const { theme } = useSettings();
-    const { can } = useAuth();
+    useAuth();
     const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
     // Yetki Kontrolleri
